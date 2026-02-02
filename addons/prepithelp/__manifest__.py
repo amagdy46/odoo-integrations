@@ -1,31 +1,27 @@
 {
     'name': "prepithelp",
 
-    'summary': "Short (1 phrase/line) summary of the module's purpose",
+    'summary': "Integration helper for Prepit Webhooks and POS customizations",
 
     'description': """
-Long description of module's purpose
+        Handles POS menu exports to Prepit, stock level monitoring during 
+        orders, and automated status webhooks.
     """,
 
     'author': "My Company",
     'website': "https://www.yourcompany.com",
 
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
-    'category': 'Uncategorized',
-    'version': '0.1',
+    'category': 'Sales/Point of Sale',
+    'version': '19.0.1.0.0', # Updated for Odoo 19 compatibility
+    'license': 'LGPL-3',     # Added to remove the log warning
 
-    # any module necessary for this one to work correctly
-    'depends': ['base', 'point_of_sale'],
+    # FIXED: Added 'stock' because you are querying stock.quant
+    'depends': ['base', 'point_of_sale', 'stock'],
 
-
-    # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'views/views.xml',
     ],
-    # only loaded in demonstration mode
-    'demo': [],
+    'installable': True,
+    'application': False,
 }
-
