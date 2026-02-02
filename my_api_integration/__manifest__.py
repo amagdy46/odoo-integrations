@@ -1,9 +1,11 @@
 {
-    'name': 'Company API Integration',
+    'name': 'Company API Sync',
     'version': '1.0',
-    'depends': ['base', 'contacts'], # We depend on contacts to map to res.partner
-    'data': [
-        'views/cron_view.xml',
-    ],
+    'category': 'Tools',
+    'summary': 'Syncs external company data into Odoo',
+    'depends': ['base', 'contacts'],
+    'data': [],
     'installable': True,
+    'application': False,
+    'license': 'LGPL-3',
 }
