@@ -1,0 +1,27 @@
+version: '3.1'
+services:
+  web:
+    image: odoo:19 # Or your desired Odoo version
+    depends_on:
+      - db
+    ports:
+      - "8071:8069" # Map host port to container port
+    volumes:
+      - odoo-web-dataaa:/var/lib/odoo # Persistent data for Odoo
+      - ./custom-addons1:/mnt/extra-addons # Mount custom addons
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo # Replace with a strong password
+  db:
+    image: postgres:15 # Or your desired PostgreSQL version
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo # Replace with a strong password
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - odoo-db-dataaa:/var/lib/postgresql/data/pgdata # Persistent data for PostgreSQL
+volumes:
+  odoo-web-dataaa:
+  odoo-db-dataaa:

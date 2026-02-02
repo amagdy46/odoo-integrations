@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <!-- ========== PREPITHELP MODEL VIEWS ========== -->
+
+    <!-- List view -->
+    <record id="prepithelp_list_view" model="ir.ui.view">
+      <field name="name">prepithelp.list</field>
+      <field name="model">prepithelp.prepithelp</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </list>
+      </field>
+    </record>
+
+    <!-- Form view with webhook button -->
+    <record id="prepithelp_form_view" model="ir.ui.view">
+      <field name="name">prepithelp.form</field>
+      <field name="model">prepithelp.prepithelp</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button name="action_send_hello_webhook"
+                    type="object"
+                    string="Send Hello"
+                    class="btn-primary"/>
+          </header>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="value"/>
+              <field name="value2"/>
+              <field name="description"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Action -->
+    <record id="prepithelp_action_window" model="ir.actions.act_window">
+      <field name="name">Prepit Help</field>
+      <field name="res_model">prepithelp.prepithelp</field>
+      <!-- 🔹 use 'list,form' to match the <list> root -->
+      <field name="view_mode">list,form</field>
+      <field name="help" type="html">
+        <p>
+          Use this model to test the webhook manually with the "Send Hello" button.
+        </p>
+      </field>
+    </record>
+
+    <!-- Top menu + submenu -->
+    <menuitem id="prepithelp_menu_root" name="Prepit Help"/>
+
+    <menuitem id="prepithelp_menu_items"
+              name="Items"
+              parent="prepithelp_menu_root"
+              action="prepithelp_action_window"/>
+
+    <!-- (No pos.config inherit here, since you chose option 1) -->
+
+  </data>
+</odoo>
